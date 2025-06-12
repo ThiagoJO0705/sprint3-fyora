@@ -1,20 +1,19 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import AuthNavigator from './navigation/AuthNavigator';
+import TabNavigator from './navigation/TabNavigator';
+import { Colors } from './constants/Colors';
 
 export default function App() {
+  // 'false' para ver a tela de Login
+  // 'true' para ver a navegação principal do app
+  const userIsLoggedIn = true;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StatusBar style="dark" backgroundColor={Colors.background} />
+      {userIsLoggedIn ? <TabNavigator /> : <AuthNavigator />}
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
