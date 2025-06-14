@@ -25,10 +25,10 @@ const EconomyChart: React.FC<Props> = ({ data }) => {
           </View>
         ))}
       </View>
-      {/* <Image
+      <Image
         source={require('../assets/images/fyora-tiny.png')}
         style={styles.fyoraImage}
-      /> */}
+      />
     </View>
   );
 };
