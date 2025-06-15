@@ -10,8 +10,33 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors } from '../constants/Colors';
 import ProgressCard from '../components/ProgressCard';
 import StreakInfoCard from '../components/StreakInfoCard';
+import EconomyChart from '../components/EconomyChart';
+import { UserProgress } from '../types';
+
+const mockProgressData: UserProgress = {
+  moneySaved: 450.0,
+  currentStreak: 25,
+  maxStreak: 43,
+  economyHistory: [
+    { label: '1ª sem', value: 50 },
+    { label: '2ª sem', value: 80 },
+    { label: '3ª sem', value: 150 },
+    { label: '4ª sem', value: 170 },
+  ],
+  nextAchievement: {
+    id: 'ach_1mes',
+    icon: 'ribbon',
+    title: 'Próxima Conquista',
+    description: 'Faltam 5 dias para conseguir "1 Mês sem Apostar"',
+  },
+  achievementsHistory: [
+  ],
+};
+
 
 const ProgressScreen = () => {
+  const data = mockProgressData;
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -22,7 +47,9 @@ const ProgressScreen = () => {
 
         <ProgressCard style={styles.economyCard}>
           <Text style={styles.economyLabel}>DINHEIRO ECONOMIZADO</Text>
-          <Text style={styles.economyValue}>R$ 450,00</Text>
+          <Text style={styles.economyValue}>
+            {`R$ ${data.moneySaved.toFixed(2).replace('.', ',')}`}
+          </Text>
           <Text style={styles.economySubtext}>
             Você poderia comprar aquele fone de ouvido novo.
           </Text>
@@ -32,16 +59,24 @@ const ProgressScreen = () => {
           <StreakInfoCard
             iconName="fire"
             title="Sequência Atual"
-            value="25 dias"
+            value={`${data.currentStreak} dias`}
           />
           <View style={{ width: 16 }} />
           <StreakInfoCard
             iconName="trophy-award"
             title="Maior Sequência"
-            value="43 dias"
+            value={`${data.maxStreak} dias`}
           />
         </View>
 
+        <ProgressCard>
+          <View style={styles.cardHeader}>
+            <Text style={styles.cardTitle}>Sua Economia</Text>
+            <Text style={styles.cardSubtitle}>Últimas 4 semanas</Text>
+          </View>
+          <EconomyChart data={data.economyHistory} />
+        </ProgressCard>
+        
         <ProgressCard style={styles.achievementCard}>
           <Ionicons name="ribbon" size={40} color="#FFC947" />
           <View style={styles.achievementText}>
