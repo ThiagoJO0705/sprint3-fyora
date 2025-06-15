@@ -32,3 +32,11 @@ export interface Post {
   supportCount: number;
   commentCount: number;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  communityUsername: string;
+  fyoraAvatar: any;
+}
