@@ -19,3 +19,16 @@ export interface UserProgress {
   nextAchievement: Achievement;
   achievementsHistory: Achievement[];
 }
+
+export type CommunityTag = 'desabafo' | 'vitória' | 'gatilhos' | 'motivação' | 'dúvida';
+
+export interface Post {
+  id: string;
+  authorName: string;
+  authorAvatar: any;
+  timestamp: string;
+  content: string;
+  tags: CommunityTag[];
+  supportCount: number;
+  commentCount: number;
+}
