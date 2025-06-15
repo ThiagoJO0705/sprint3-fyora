@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#EADBC8',
     paddingTop: 10,
+    width: "80%",
   },
   barContainer: {
     flex: 1,
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
   },
   fyoraImage: {
     position: 'absolute',
-    width: 70,
-    height: 70,
+    width: 180,
+    height: 180,
     resizeMode: 'contain',
-    right: -15,
-    bottom: 50,
+    right: -60,
+    bottom: 10,
   },
 });
 
