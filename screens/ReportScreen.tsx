@@ -50,7 +50,9 @@ const ReportScreen = () => {
     );
   };
 
-  const handleNextStep = (destinationScreen: "MeuOasis" | "CuidarDaFyora") => {
+  const handleNextStep = (
+    destinationScreen: "MeuOasis" | "CareFyoraScreen"
+  ) => {
     const report = { valor, tempo, gatilhos, locais, reflexao };
     console.log("Relato de Recaída Salvo:", report);
 
@@ -60,11 +62,13 @@ const ReportScreen = () => {
       [
         {
           text: "Seguir em Frente",
+          // 3. Ao fechar o alert, navega para a tela de destino correta
           onPress: () => {
-            if (destinationScreen === "CuidarDaFyora") {
-              console.log("Navegaria para Cuidar da Fyora");
-              navigation.goBack();
+            if (destinationScreen === "CareFyoraScreen") {
+              // Navega para a tela de Cuidar da Fyora
+              navigation.navigate("CareFyoraScreen");
             } else {
+              // Navega para a tela do Oásis
               navigation.navigate("AppTabs", { screen: "MeuOasis" });
             }
           },
@@ -160,7 +164,7 @@ const ReportScreen = () => {
               description: "Fortaleça seu companheiro de jornada.",
               iconName: "heart-outline",
             }}
-            onPress={() => handleNextStep("CuidarDaFyora")}
+            onPress={() => handleNextStep("CareFyoraScreen")}
           />
         </View>
       </ScrollView>
