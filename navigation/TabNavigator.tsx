@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import ProgressScreen from "../screens/ProgressScreen";
 import OasisScreen from "../screens/OasisScreen";
 import FyoraScreen from "../screens/FyoraScreen";
+import CareFyoraScreen from "../screens/CareFyoraScreen";
 import CommunityScreen from "../screens/CommunityScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ReportScreen from "../screens/ReportScreen";
@@ -132,6 +133,11 @@ const MainNavigator = () => {
             </TouchableOpacity>
           ),
         })}
+      />
+      <RootStack.Screen
+        name="CareFyoraScreen"
+        component={CareFyoraScreen}
+        options={{ headerShown: false }}
       />
     </RootStack.Navigator>
   );
