@@ -2,14 +2,19 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Colors } from '../constants/Colors';
 
-interface Props {
+interface Props<T extends string> {
   label: string;
-  tags: string[];
-  selectedTags: string[];
-  onToggleTag: (tag: string) => void;
+  tags: T[];
+  selectedTags: T[];
+  onToggleTag: (tag: T) => void;
 }
 
-const TagSelector: React.FC<Props> = ({ label, tags, selectedTags, onToggleTag }) => {
+const TagSelector = <T extends string>({
+  label,
+  tags,
+  selectedTags,
+  onToggleTag,
+}: Props<T>) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -23,7 +28,7 @@ const TagSelector: React.FC<Props> = ({ label, tags, selectedTags, onToggleTag }
               onPress={() => onToggleTag(tag)}
             >
               <Text style={[styles.tagText, isSelected && styles.tagTextSelected]}>
-                #{tag}
+                #{tag.charAt(0).toUpperCase() + tag.slice(1)} 
               </Text>
             </TouchableOpacity>
           );

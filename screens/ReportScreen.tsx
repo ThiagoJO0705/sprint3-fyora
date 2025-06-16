@@ -41,19 +41,6 @@ const ReportScreen = () => {
   const [locais, setLocais] = useState<string[]>([]);
   const [reflexao, setReflexao] = useState("");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{ marginLeft: 10 }}
-        >
-          <Ionicons name="close" size={28} color={Colors.primary} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   const handleToggleTag = (
     tag: string,
     setTags: React.Dispatch<React.SetStateAction<string[]>>
