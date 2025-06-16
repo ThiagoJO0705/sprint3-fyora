@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View, FlatList, Alert } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  FlatList,
+  Alert,
+  Text,
+} from "react-native";
 import { Colors } from "../constants/Colors";
 import { Post } from "../types";
 import PostCard from "../components/PostCard";
@@ -50,6 +57,9 @@ const CommunityScreen = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+        <Text style={styles.subtitle}>
+          Um espaço seguro para compartilhar e apoiar
+        </Text>
         <FlatList
           data={mockCommunityPosts}
           renderItem={({ item }) => <PostCard post={item} />}
@@ -69,14 +79,20 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: Colors.background,
-    paddingTop: 20,
+    paddingTop: 10,
   },
   container: {
     flex: 1,
+    alignItems: "center",
   },
   listContentContainer: {
     paddingHorizontal: 16,
     paddingBottom: 80,
+  },
+  subtitle: {
+    color: Colors.textPrimary,
+    paddingBottom: 20,
+    fontSize: 16,
   },
 });
 

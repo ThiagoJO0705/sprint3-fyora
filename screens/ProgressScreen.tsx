@@ -32,6 +32,11 @@ const ProgressScreen = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.subtitleContainer}>
+          <Text style={styles.subtitle}>
+            Um espaço seguro para compartilhar e apoiar
+          </Text>
+        </View>
         <ProgressCard style={styles.economyCard}>
           <Text style={styles.economyLabel}>DINHEIRO ECONOMIZADO</Text>
           <Text style={styles.economyValue}>
@@ -101,19 +106,30 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: Colors.background,
+    // alignItems: "center"
   },
   container: {
     padding: 20,
+    paddingTop: 10,
+  },
+  subtitle: {
+    color: Colors.textPrimary,
+    paddingBottom: 20,
+    fontSize: 16,
+  },
+  subtitleContainer: {
+    flex: 1,
+    alignItems: "center"
   },
   economyCard: {
     backgroundColor: Colors.primary,
     alignItems: "center",
   },
   economyLabel: {
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.white,
     fontWeight: "600",
-    opacity: 0.8,
+    opacity: 1,
   },
   economyValue: {
     fontSize: 40,

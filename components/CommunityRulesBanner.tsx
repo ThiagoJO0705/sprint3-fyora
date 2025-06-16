@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   banner: {
     backgroundColor: Colors.primary,
     borderRadius: 16,
-    padding: 16,
+    padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
