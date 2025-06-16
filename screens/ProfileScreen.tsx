@@ -49,7 +49,7 @@ const ProfileScreen = () => {
         <Text style={styles.sectionTitle}>Recompensas Fyora</Text>
         <View style={styles.rewardsContainer}>
           <AppButton title="Loja da Fyora" onPress={() => {}} />
-          <View style={{ width: 16 }} />
+          {/* <View style={{ width: 16 }} /> */}
           <AppButton title="Personalizar Fyora" onPress={() => {}} />
         </View>
 
@@ -143,7 +143,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   rewardsContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
+    gap: 20,
     marginBottom: 24,
   },
   safeHavenCard: {
