@@ -1,23 +1,26 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { AppTabParamList } from './types';
-import { Colors } from '../constants/Colors';
+import { AppTabParamList } from "./types";
+import { Colors } from "../constants/Colors";
 
-import ProgressScreen from '../screens/ProgressScreen';
-import OasisScreen from '../screens/OasisScreen';
-import FyoraScreen from '../screens/FyoraScreen';
-import CommunityScreen from '../screens/CommunityScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProgressScreen from "../screens/ProgressScreen";
+import OasisScreen from "../screens/OasisScreen";
+import FyoraScreen from "../screens/FyoraScreen";
+import CommunityScreen from "../screens/CommunityScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import Header from "../components/Header";
 
 const Tab = createBottomTabNavigator<AppTabParamList>();
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
+      screenOptions={({ route }) => ({
+        headerShown: true,
+        header: ({ options }) => <Header title={options.title || route.name} />,
+
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.textSecondary,
         tabBarStyle: {
@@ -28,14 +31,15 @@ const TabNavigator = () => {
         },
         tabBarLabelStyle: {
           fontSize: 10,
-          fontWeight: '500',
+          fontWeight: "500",
         },
-      }}
+      })}
     >
       <Tab.Screen
         name="Progresso"
         component={ProgressScreen}
         options={{
+          title: "Meu Progresso",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="stats-chart" color={color} size={size} />
           ),
@@ -45,7 +49,7 @@ const TabNavigator = () => {
         name="MeuOasis"
         component={OasisScreen}
         options={{
-          title: 'Meu Oásis',
+          title: "Meu Oásis",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="leaf" color={color} size={size} />
           ),
@@ -55,6 +59,7 @@ const TabNavigator = () => {
         name="Fyora"
         component={FyoraScreen}
         options={{
+          title: "Fyora",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="bird" color={color} size={size} />
           ),
@@ -64,6 +69,7 @@ const TabNavigator = () => {
         name="Comunidade"
         component={CommunityScreen}
         options={{
+          title: "Comunidade",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="people" color={color} size={size} />
           ),
@@ -73,6 +79,7 @@ const TabNavigator = () => {
         name="Perfil"
         component={ProfileScreen}
         options={{
+          title: "Meu Perfil",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" color={color} size={size} />
           ),

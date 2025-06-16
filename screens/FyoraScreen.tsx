@@ -26,9 +26,6 @@ const FyoraScreen = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Fyora</Text>
-        </View>
         <View style={styles.resourcesContainer}>
           <View style={styles.resourceItem}>
             <Image
@@ -116,23 +113,11 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: Colors.background,
+    paddingTop: 10,
   },
   container: {
     flexGrow: 1,
     alignItems: "center",
-  },
-  header: {
-    width: "100%",
-    paddingVertical: 20,
-    backgroundColor: Colors.card,
-    borderRadius: 15,
-    marginBottom: 20,
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: Colors.textPrimary,
-    textAlign: "center",
   },
   resourcesContainer: {
     flexDirection: "row",
@@ -220,7 +205,7 @@ const styles = StyleSheet.create({
   sideActions: {
     position: "absolute",
     left: 10,
-    top: "50%",
+    top: "45%",
     zIndex: 10,
     transform: [{ translateY: -100 }],
     alignItems: "center",
@@ -236,7 +221,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     alignItems: "center",
     borderWidth: 1.5,
-    borderColor: Colors.primary
+    borderColor: Colors.primary,
   },
   actionButtonReport: {
     backgroundColor: Colors.white,
@@ -248,8 +233,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     alignItems: "center",
-        borderWidth: 1.5,
-    borderColor: Colors.primary
+    borderWidth: 1.5,
+    borderColor: Colors.primary,
   },
   resourceSideIcon: {
     width: 35,
