@@ -14,8 +14,12 @@ import {
 import { Colors } from '../constants/Colors';
 import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../navigation/types';
 
-const LoginScreen = () => {
+type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
+
+const LoginScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -73,7 +77,7 @@ const LoginScreen = () => {
 
           <View style={styles.footer}>
             <Text style={styles.footerText}>Não tem uma conta?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
               <Text style={styles.signupLink}> Cadastre-se</Text>
             </TouchableOpacity>
           </View>

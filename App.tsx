@@ -8,7 +8,7 @@ import { Colors } from './constants/Colors';
 export default function App() {
   // 'false' para ver a tela de Login
   // 'true' para ver a navegação principal do app
-  const userIsLoggedIn = true;
+  const userIsLoggedIn = false;
 
   return (
     <NavigationContainer>
