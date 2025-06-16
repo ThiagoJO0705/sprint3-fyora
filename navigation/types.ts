@@ -14,4 +14,5 @@ export type AppTabParamList = {
 export type RootStackParamList = {
   AppTabs: undefined;
   ReportScreen: undefined;
+  NewPost: undefined;
 };
