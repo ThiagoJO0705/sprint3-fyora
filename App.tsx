@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import AuthNavigator from './navigation/AuthNavigator';
-import TabNavigator from './navigation/TabNavigator';
+import MainNavigator from './navigation/TabNavigator';
 import { Colors } from './constants/Colors';
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar style="dark" backgroundColor={Colors.background} />
-      {userIsLoggedIn ? <TabNavigator /> : <AuthNavigator />}
+      {userIsLoggedIn ? <MainNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 }

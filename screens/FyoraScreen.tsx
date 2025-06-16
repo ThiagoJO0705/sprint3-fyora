@@ -8,12 +8,22 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { AppTabParamList } from "../navigation/types";
 import { Colors } from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import AppButton from "../components/AppButton";
 import * as Progress from "react-native-progress";
 
+type FyoraScreenNavigationProp = BottomTabNavigationProp<
+  AppTabParamList,
+  "Fyora"
+>;
+
 const FyoraScreen = () => {
+  const navigation = useNavigation<FyoraScreenNavigationProp>();
+
   // Dados mockados por enquanto. No futuro, virão de um estado global ou API.
   const resources = {
     feathers: 7,
@@ -89,7 +99,10 @@ const FyoraScreen = () => {
               style={styles.resourceSideIcon}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButtonReport}>
+          <TouchableOpacity
+            style={styles.actionButtonReport}
+            onPress={() => navigation.navigate("ReportScreen" as any)}
+          >
             <Ionicons name="alert-circle-outline" size={28} color="#E53935" />
             <Text style={styles.reportText}>Auto Report</Text>
           </TouchableOpacity>
