@@ -12,6 +12,9 @@ import { Post } from "../types";
 import PostCard from "../components/PostCard";
 import FloatingActionButton from "../components/FloatingActionButton";
 import CommunityRulesBanner from "../components/CommunityRulesBanner";
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
+import { RootStackParamList } from '../navigation/types'; 
 
 const mockCommunityPosts: Post[] = [
   {
@@ -49,9 +52,13 @@ const mockCommunityPosts: Post[] = [
   },
 ];
 
+type CommunityScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 const CommunityScreen = () => {
+  const navigation = useNavigation<CommunityScreenNavigationProp>();
+
   const handleNewPost = () => {
-    Alert.alert("tela para criar uma nova publicação");
+    navigation.navigate('NewPost');
   };
 
   return (

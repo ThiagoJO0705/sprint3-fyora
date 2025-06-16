@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   headerText: {
-    flex: 1,
+    flex: 2,
     marginLeft: 12,
   },
   author: {
