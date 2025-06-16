@@ -9,3 +9,8 @@ export type AppTabParamList = {
   Comunidade: undefined;
   Perfil: undefined;
 };
+
+export type RootStackParamList = {
+  AppTabs: undefined;
+  ReportScreen: undefined;
+};

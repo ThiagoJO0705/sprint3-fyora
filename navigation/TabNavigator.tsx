@@ -1,26 +1,28 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { AppTabParamList } from "./types";
+import { AppTabParamList, RootStackParamList } from "./types";
 import { Colors } from "../constants/Colors";
 
+import Header from "../components/Header";
 import ProgressScreen from "../screens/ProgressScreen";
 import OasisScreen from "../screens/OasisScreen";
 import FyoraScreen from "../screens/FyoraScreen";
 import CommunityScreen from "../screens/CommunityScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import Header from "../components/Header";
+import ReportScreen from "../screens/ReportScreen";
 
 const Tab = createBottomTabNavigator<AppTabParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
-const TabNavigator = () => {
+const AppTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: true,
         header: ({ options }) => <Header title={options.title || route.name} />,
-
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.textSecondary,
         tabBarStyle: {
@@ -89,4 +91,21 @@ const TabNavigator = () => {
   );
 };
 
-export default TabNavigator;
+const MainNavigator = () => {
+  return (
+    <RootStack.Navigator>
+      <RootStack.Screen
+        name="AppTabs"
+        component={AppTabs}
+        options={{ headerShown: false }}
+      />
+      <RootStack.Screen
+        name="ReportScreen"
+        component={ReportScreen}
+        options={{ presentation: "modal", title: "Relatar Recaída" }}
+      />
+    </RootStack.Navigator>
+  );
+};
+
+export default MainNavigator;
