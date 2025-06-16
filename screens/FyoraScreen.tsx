@@ -9,17 +9,13 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { AppTabParamList } from "../navigation/types";
+import { AppTabScreenNavigationProp } from '../navigation/types';
 import { Colors } from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import AppButton from "../components/AppButton";
 import * as Progress from "react-native-progress";
 
-type FyoraScreenNavigationProp = BottomTabNavigationProp<
-  AppTabParamList,
-  "Fyora"
->;
+type FyoraScreenNavigationProp = AppTabScreenNavigationProp;
 
 const FyoraScreen = () => {
   const navigation = useNavigation<FyoraScreenNavigationProp>();
@@ -111,7 +107,7 @@ const FyoraScreen = () => {
         <View style={styles.mainActionContainer}>
           <AppButton
             title="Cuidar da Fyora"
-            onPress={() => console.log("Navegar para Cuidar da Fyora")}
+            onPress={() => navigation.navigate("CareFyoraScreen")}
           />
           <Text style={styles.mainActionSubtext}>
             Venha comemorar e brincar com ela!

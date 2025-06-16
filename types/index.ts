@@ -47,3 +47,19 @@ export interface OasisActivity {
   description: string;
   iconName: React.ComponentProps<typeof import('@expo/vector-icons').Ionicons>['name'];
 }
+
+export interface FyoraStatus {
+  level: number;
+  xp: number; 
+  xpToNextLevel: number; 
+  happiness: number; 
+  hunger: number; 
+  entertainment: number; 
+  energy: number; 
+}
+
+export interface PlayerResources {
+  feathers: number; 
+  streak: number;   
+  coins: number;    
+}
