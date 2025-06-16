@@ -13,7 +13,6 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/types";
 import { Colors } from "../constants/Colors";
-import AppButton from "../components/AppButton";
 import AppTextInput from "../components/AppTextInput";
 import TagSelector from "../components/TagSelector";
 import OasisCard from "../components/OasisCard";
@@ -64,13 +63,26 @@ const ReportScreen = () => {
     );
   };
 
-  const handleSubmit = () => {
+  const handleNextStep = (destinationScreen: "MeuOasis" | "CuidarDaFyora") => {
     const report = { valor, tempo, gatilhos, locais, reflexao };
-    console.log("Relato de Recaída:", report);
+    console.log("Relato de Recaída Salvo:", report);
+
     Alert.alert(
       "Relato Salvo",
-      "Obrigado pela sua honestidade. Cada passo, mesmo os difíceis, faz parte da jornada.",
-      [{ text: "Seguir em Frente", onPress: () => navigation.goBack() }]
+      "Obrigado pela sua honestidade. Lembre-se, cada passo faz parte da jornada.",
+      [
+        {
+          text: "Seguir em Frente",
+          onPress: () => {
+            if (destinationScreen === "CuidarDaFyora") {
+              console.log("Navegaria para Cuidar da Fyora");
+              navigation.goBack();
+            } else {
+              navigation.navigate("AppTabs", { screen: "MeuOasis" });
+            }
+          },
+        },
+      ]
     );
   };
 
@@ -130,8 +142,10 @@ const ReportScreen = () => {
 
         <View style={styles.section}>
           <Text style={styles.nextStepTitle}>
-            Que tal um passo para cuidar de você agora?
+            Obrigado por sua honestidade. Que tal um passo para cuidar de você
+            agora?
           </Text>
+
           <OasisCard
             activity={{
               id: "meditate",
@@ -139,14 +153,29 @@ const ReportScreen = () => {
               description: "Acalme a mente e o corpo.",
               iconName: "pulse-outline",
             }}
-            onPress={() => console.log("Navegar para Meditação")}
+            onPress={() => handleNextStep("MeuOasis")}
+          />
+
+          <OasisCard
+            activity={{
+              id: "read",
+              title: "Ler sobre como lidar com a culpa",
+              description: "Encontre conforto e novas estratégias.",
+              iconName: "book-outline",
+            }}
+            onPress={() => handleNextStep("MeuOasis")}
+          />
+
+          <OasisCard
+            activity={{
+              id: "care",
+              title: "Cuidar da Fyora",
+              description: "Fortaleça seu companheiro de jornada.",
+              iconName: "heart-outline",
+            }}
+            onPress={() => handleNextStep("CuidarDaFyora")}
           />
         </View>
-
-        <AppButton
-          title="Salvar Relato e Seguir em Frente"
-          onPress={handleSubmit}
-        />
       </ScrollView>
     </SafeAreaView>
   );
