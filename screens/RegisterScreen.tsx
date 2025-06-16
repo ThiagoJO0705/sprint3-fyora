@@ -50,11 +50,11 @@ const RegisterScreen = ({ navigation }: Props) => {
       >
         <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
           <View style={styles.header}>
+            <Text style={styles.title}>Fyora</Text>
             <Image
               source={require('../assets/images/fyora-register.png')}
               style={styles.logo}
             />
-            <Text style={styles.title}>Fyora</Text>
           </View>
 
           <View style={styles.card}>
@@ -93,17 +93,22 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     marginBottom: 20,
+    flexDirection: "row"
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 230,
+    height: 230,
     resizeMode: 'contain',
+    position: "relative",
+    top: 40,
+    left: 40,
+    zIndex: 10
   },
   title: {
     fontSize: 40,
     fontWeight: 'bold',
     color: Colors.textPrimary,
-    marginTop: -10,
+    paddingTop: 120
   },
   card: {
     width: '100%',
