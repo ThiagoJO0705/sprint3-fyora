@@ -40,3 +40,10 @@ export interface User {
   communityUsername: string;
   fyoraAvatar: any;
 }
+
+export interface OasisActivity {
+  id: string;
+  title: string;
+  description: string;
+  iconName: React.ComponentProps<typeof import('@expo/vector-icons').Ionicons>['name'];
+}
