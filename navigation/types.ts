@@ -1,3 +1,5 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
+
 export type AuthStackParamList = {
   Login: undefined;
 };
@@ -11,6 +13,6 @@ export type AppTabParamList = {
 };
 
 export type RootStackParamList = {
-  AppTabs: undefined;
+  AppTabs: NavigatorScreenParams<AppTabParamList>; 
   ReportScreen: undefined;
 };
