@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   rewardsContainer: {
-    flexDirection: "row",
+    gap: 10,
     marginBottom: 24,
   },
   safeHavenCard: {

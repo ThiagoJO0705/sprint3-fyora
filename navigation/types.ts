@@ -1,11 +1,11 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
-export type AuthStackParamList = {
+type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
 };
 
-export type AppTabParamList = {
+ type AppTabParamList = {
   Progresso: undefined;
   MeuOasis: undefined;
   Fyora: undefined;
@@ -13,9 +13,11 @@ export type AppTabParamList = {
   Perfil: undefined;
 };
 
-export type RootStackParamList = {
+ type RootStackParamList = {
   AppTabs: NavigatorScreenParams<AppTabParamList>; 
   ReportScreen: undefined;
   CareFyoraScreen: undefined;
   NewPost: undefined;
 };
+
+export {AppTabParamList, AuthStackParamList, RootStackParamList}
