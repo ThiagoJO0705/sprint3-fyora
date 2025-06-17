@@ -9,51 +9,51 @@
 ## 📋 Índice
 
 - [Sobre o Projeto](#sobre-o-projeto)
-- [✨ Principais Funcionalidades](#principais-funcionalidades)
-- [🚀 Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [🎨 Design e Prototipagem (Figma)](#design-e-prototipagem-figma)
-- [▶️ Começando](#começando)
-- [📂 Estrutura do Projeto](#estrutura-do-projeto)
-- [👨‍💻 Integrantes](#integrantes)
+- [Principais Funcionalidades](#principais-funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Design e Prototipagem Figma](#design-e-prototipagem-figma)
+- [Começando](#começando)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Integrantes](#integrantes)
 
-## 💡 Sobre o Projeto
+## Sobre o Projeto
 
 O crescimento acelerado do mercado de apostas trouxe graves consequências sociais e psicológicas. Apostadores compulsivos enfrentam impactos financeiros, problemas de saúde mental e prejuízos nas relações interpessoais. É urgente oferecer uma solução eficaz, humana e acessível para combater essa crise silenciosa.
 
 Fyora nasceu com o objetivo de ser essa solução, utilizando tecnologia e empatia para oferecer suporte contínuo através de três pilares:
 
--   **Inibição Ativa:** Intervenções em tempo real com alertas e alternativas saudáveis.
--   **Tratamento e Apoio:** Conexão com profissionais, grupos de apoio e conteúdos educativos.
--   **Laço Emocional:** A Fyora como centro emocional do app, motivando e refletindo o progresso do usuário.
+- **Inibição Ativa:** Intervenções em tempo real com alertas e alternativas saudáveis.
+- **Tratamento e Apoio:** Conexão com profissionais, grupos de apoio e conteúdos educativos.
+- **Laço Emocional:** A Fyora como centro emocional do app, motivando e refletindo o progresso do usuário.
 
-## ✨ Principais Funcionalidades
+## Principais Funcionalidades
 
--   **Dashboard Emocional (Tela Fyora):** A tela principal que reflete o estado do usuário através da felicidade e progresso da Fyora.
--   **Acompanhamento de Progresso:** Métricas visuais e motivadoras, como dinheiro economizado, sequência de dias sem apostas e conquistas desbloqueadas.
--   **Oásis de Bem-Estar:** Uma caixa de ferramentas com atividades de relaxamento, como exercícios de respiração, meditações guiadas e um "antídoto para o tédio".
--   **Comunidade Anônima e Segura:** Um feed de apoio onde usuários podem compartilhar vitórias e desabafos de forma anônima, com nomes e avatares gerados pelo sistema.
--   **Ferramenta de Auto-Relato:** Uma interface guiada e sem julgamentos para que o usuário possa registrar recaídas, ajudando-o a identificar gatilhos e a tomar uma ação de recuperação imediata.
--   **Gerenciamento de Perfil e Segurança:** Área privada para o usuário gerenciar sua conta e acessar contatos de ajuda em um "Porto Seguro".
--   **Sistema de Recompensas:** Gamificação através de moedas e itens para personalizar a Fyora, criando um ciclo de engajamento positivo.
+- **Dashboard Emocional (Tela Fyora):** A tela principal que reflete o estado do usuário através da felicidade e progresso da Fyora.
+- **Acompanhamento de Progresso:** Métricas visuais e motivadoras, como dinheiro economizado, sequência de dias sem apostas e conquistas desbloqueadas.
+- **Oásis de Bem-Estar:** Uma caixa de ferramentas com atividades de relaxamento, como exercícios de respiração, meditações guiadas e um "antídoto para o tédio".
+- **Comunidade Anônima e Segura:** Um feed de apoio onde usuários podem compartilhar vitórias e desabafos de forma anônima, com nomes e avatares gerados pelo sistema.
+- **Ferramenta de Auto-Relato:** Uma interface guiada e sem julgamentos para que o usuário possa registrar recaídas, ajudando-o a identificar gatilhos e a tomar uma ação de recuperação imediata.
+- **Gerenciamento de Perfil e Segurança:** Área privada para o usuário gerenciar sua conta e acessar contatos de ajuda em um "Porto Seguro".
+- **Sistema de Recompensas:** Gamificação através de moedas e itens para personalizar a Fyora, criando um ciclo de engajamento positivo.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 Este projeto foi construído utilizando as seguintes tecnologias de ponta no ecossistema mobile:
 
--   [React Native](https://reactnative.dev/)
--   [Expo](https://expo.dev/)
--   [TypeScript](https://www.typescriptlang.org/)
--   [React Navigation](https://reactnavigation.org/) para o gerenciamento de rotas e navegação.
--   [Expo-SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/) para o banco de dados local.
--   [React Native Progress](https://github.com/oblador/react-native-progress) para os indicadores de progresso circulares.
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Navigation](https://reactnavigation.org/) para o gerenciamento de rotas e navegação.
+- [Expo-SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/) para o banco de dados local.
+- [React Native Progress](https://github.com/oblador/react-native-progress) para os indicadores de progresso circulares.
 
-## 🎨 Design e Prototipagem (Figma)
+## Design e Prototipagem Figma
 
 Todo o design das telas, componentes e da identidade visual do Fyora foi cuidadosamente planejado e prototipado na plataforma Figma. Você pode visualizar o projeto completo no link abaixo.
 
 **[➡️ Acessar o Projeto no Figma](https://www.figma.com/design/2v3JN6z8rvv37GhoBjCklf/Fyora?node-id=0-1&t=vQSbaVGpyxurjxeu-1)**
 
-## ▶️ Começando
+## Começando
 
 Para rodar este projeto localmente, siga os passos abaixo.
 
@@ -61,20 +61,20 @@ Para rodar este projeto localmente, siga os passos abaixo.
 
 Você vai precisar ter o Node.js, npm (ou yarn) e o Expo Go (no seu celular) instalados.
 
--   [Node.js](https://nodejs.org/en/)
--   [Expo Go (Android/iOS)](https://expo.dev/go)
+- [Node.js](https://nodejs.org/en/)
+- [Expo Go (Android/iOS)](https://expo.dev/go)
 
 ### Instalação
 
-1.  Clone o repositório para a sua máquina local:
+1. Clone o repositório para a sua máquina local:
     ```sh
     git clone https://github.com/FIAP-MOBILE/challenge-fyora
     ```
-2.  Navegue até o diretório do projeto:
+2. Navegue até o diretório do projeto:
     ```sh
     cd challenge-fyora
     ```
-3.  Instale todas as dependências do projeto:
+3. Instale todas as dependências do projeto:
     ```sh
     npm install
     ```
@@ -82,17 +82,21 @@ Você vai precisar ter o Node.js, npm (ou yarn) e o Expo Go (no seu celular) ins
     ```sh
     yarn
     ```
-4.  Para garantir que o banco de dados seja criado corretamente, desinstale o app `Fyora` do seu emulador/dispositivo se já houver uma versão antiga.
+4. Para garantir que o banco de dados seja criado corretamente, desinstale o app `Fyora` do seu emulador/dispositivo se já houver uma versão antiga.
 
 ### Executando o Aplicativo
 
-1.  Inicie o servidor de desenvolvimento do Expo. É altamente recomendado usar a flag `--clear` na primeira vez para evitar problemas de cache.
+1. Inicie o servidor de desenvolvimento do Expo. É altamente recomendado usar a flag `--clear` na primeira vez para evitar problemas de cache.
     ```sh
     npx expo start --clear
     ```
-2.  Um QR code aparecerá no seu terminal. Abra o aplicativo **Expo Go** no seu celular e escaneie o QR code para abrir o projeto.
+2. Um QR code aparecerá no seu terminal. Abra o aplicativo **Expo Go** no seu celular e escaneie o QR code para abrir o projeto.
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
+
+A estrutura de pastas do projeto foi organizada da seguinte forma para manter a escalabilidade e a clareza:
+
+
 
 A estrutura de pastas do projeto foi organizada da seguinte forma para manter a escalabilidade e a clareza: <br>
 fyora-app/ <br>
@@ -106,13 +110,14 @@ fyora-app/ <br>
 ├── types/ # Definições de tipos e interfaces do TypeScript <br>
 └── App.tsx # O ponto de entrada principal do aplicativo
 
-## 👨‍💻 Integranets
 
-GUILHERME ROCHA BIANCHINI - RM97974 <br>
-NIKOLAS RODRIGUES MOURA DOS SANTOS - RM551566 <br>
-PEDRO HENRIQUE PEDROSA TAVARES - RM97877 <br>
-RODRIGO BRASILEIRO - RM98952 <br>
-THIAGO JARDIM DE OLIVEIRA - RM551624
+## Integrantes
 
+GUILHERME ROCHA BIANCHINI - RM97974  
+NIKOLAS RODRIGUES MOURA DOS SANTOS - RM551566  
+PEDRO HENRIQUE PEDROSA TAVARES - RM97877  
+RODRIGO BRASILEIRO - RM98952  
+THIAGO JARDIM DE OLIVEIRA - RM551624  
 
-Projeto desenvolvido pela equipe TechPulse Global Network para o Challenge de Mobile Development da FIAP.
+Projeto desenvolvido pela equipe **TechPulse Global Network** para o **Challenge de Mobile Development da FIAP**.
+
