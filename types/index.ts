@@ -28,12 +28,13 @@ type CommunityTag =
   | "dúvida";
 
 interface Post {
-  id: string;
+  id: number;
+  authorId: number;
   authorName: string;
   authorAvatar: any;
-  timestamp: string;
   content: string;
   tags: CommunityTag[];
+  timestamp: string;
   supportCount: number;
   commentCount: number;
 }
