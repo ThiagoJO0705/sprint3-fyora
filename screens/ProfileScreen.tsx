@@ -8,40 +8,38 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+import { useAuth } from "../context/AuthContext";
 import { Colors } from "../constants/Colors";
 import AppButton from "../components/AppButton";
 import ProfileOption from "../components/ProfileOption";
-import { User } from "../types";
-
-const MOCKED_USER: User = {
-  id: "user-123",
-  name: "Pedro",
-  email: "pedro@email.com",
-  communityUsername: "Fênix Cantora",
-  fyoraAvatar: require("../assets/images/phoenix-avatar-1.png"),
-};
 
 const ProfileScreen = () => {
+  const { user, logout } = useAuth();
+
   const handleLogout = () => {
     Alert.alert("Sair da Conta", "Você tem certeza que deseja sair?", [
       { text: "Cancelar", style: "cancel" },
-      {
-        text: "Sair",
-        style: "destructive",
-        onPress: () => console.log("Usuário deslogado!"),
-      },
+      { text: "Sair", style: "destructive", onPress: logout }, 
     ]);
   };
+
+  if (!user) {
+    return (
+      <View style={styles.safeArea}>
+        <Text>Carregando perfil...</Text>
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.welcomeCard}>
-          <Image source={MOCKED_USER.fyoraAvatar} style={styles.avatar} />
+          <Image source={user.fyoraAvatar} style={styles.avatar} />
           <View>
-            <Text style={styles.welcomeText}>Olá, {MOCKED_USER.name}!</Text>
+            <Text style={styles.welcomeText}>Olá, {user.name}!</Text>
             <Text style={styles.communityName}>
-              Na comunidade, você é a {MOCKED_USER.communityUsername}
+              Na comunidade, você é a {user.communityUsername}
             </Text>
           </View>
         </View>
@@ -49,7 +47,7 @@ const ProfileScreen = () => {
         <Text style={styles.sectionTitle}>Recompensas Fyora</Text>
         <View style={styles.rewardsContainer}>
           <AppButton title="Loja da Fyora" onPress={() => {}} />
-          {/* <View style={{ width: 16 }} /> */}
+          <View style={{ width: 16 }} />
           <AppButton title="Personalizar Fyora" onPress={() => {}} />
         </View>
 
@@ -143,8 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   rewardsContainer: {
-    flexDirection: "column",
-    gap: 20,
+    flexDirection: "row",
     marginBottom: 24,
   },
   safeHavenCard: {
