@@ -10,26 +10,46 @@ import {
   Platform,
   ScrollView,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { Colors } from "../constants/Colors";
 import AppTextInput from "../components/AppTextInput";
 import AppButton from "../components/AppButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../navigation/types";
+import { findUserByEmailAndPassword } from "../services/database";
+import { useAuth } from "../context/AuthContext";
 
 type Props = NativeStackScreenProps<AuthStackParamList, "Login">;
 
 const LoginScreen = ({ navigation }: Props) => {
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
-    console.log("Login attempt com:", { email, password });
+  const handleLogin = async () => {
     if (!email || !password) {
       Alert.alert("Campos vazios", "Por favor, preencha o e-mail e a senha.");
       return;
     }
-    Alert.alert("Login", `Bem-vindo(a) de volta!`);
+
+    setIsLoading(true);
+
+    try {
+      const foundUser = await findUserByEmailAndPassword(email, password);
+
+      if (foundUser) {
+        login(foundUser);
+      } else {
+        Alert.alert("Login Falhou", "E-mail ou senha incorretos.");
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Erro", "Ocorreu um erro ao tentar fazer o login.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -61,6 +81,7 @@ const LoginScreen = ({ navigation }: Props) => {
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
+              editable={!isLoading}
             />
             <AppTextInput
               label="Sua Senha"
@@ -68,13 +89,25 @@ const LoginScreen = ({ navigation }: Props) => {
               value={password}
               onChangeText={setPassword}
               secureTextEntry
+              editable={!isLoading}
             />
             <TouchableOpacity>
               <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
             </TouchableOpacity>
 
             <View style={styles.buttonContainer}>
-              <AppButton title="Entrar" onPress={handleLogin} />
+              <AppButton
+                title={isLoading ? "" : "Entrar"}
+                onPress={handleLogin}
+                disabled={isLoading}
+              />
+
+              {isLoading && (
+                <ActivityIndicator
+                  style={styles.loadingIndicator}
+                  color={Colors.white}
+                />
+              )}
             </View>
           </View>
 
@@ -110,10 +143,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   titleContainer: {
-  alignItems: "center",
-  position: "relative",
-  right: 70,
-  top: 70
+    alignItems: "center",
+    position: "relative",
+    right: 70,
+    top: 70,
   },
   logo: {
     width: 280,
@@ -121,7 +154,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     position: "relative",
     top: 40,
-    left:20
+    left: 20,
   },
   title: {
     fontSize: 40,
@@ -148,6 +181,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
+    justifyContent: "center",
   },
   footer: {
     flexDirection: "row",
@@ -161,6 +195,11 @@ const styles = StyleSheet.create({
     color: Colors.primary,
     fontWeight: "bold",
     fontSize: 14,
+  },
+
+  loadingIndicator: {
+    position: "absolute",
+    alignSelf: "center",
   },
 });
 

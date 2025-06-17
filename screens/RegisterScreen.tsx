@@ -16,6 +16,7 @@ import { AuthStackParamList } from '../navigation/types';
 import { Colors } from '../constants/Colors';
 import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
+import { addUser } from '../services/database';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
@@ -27,7 +28,7 @@ const RegisterScreen = ({ navigation }: Props) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => { 
     if (!name || !cpf || !phone || !email || !password || !confirmPassword) {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
       return;
@@ -36,10 +37,31 @@ const RegisterScreen = ({ navigation }: Props) => {
       Alert.alert('Erro', 'As senhas não coincidem.');
       return;
     }
-    console.log('Registering with:', { name, cpf, phone, email });
 
-    Alert.alert('Sucesso!', 'Sua conta foi criada. Faça o login para começar.');
-    navigation.navigate('Login');
+    try {
+      const userData = {
+        name: name.trim(),
+        cpf: cpf.trim(),
+        phone: phone.trim(),
+        email: email.trim().toLowerCase(),
+        password: password,
+      };
+
+      await addUser(userData);
+      
+      console.log('Usuário registrado com sucesso no banco de dados!');
+
+      Alert.alert('Sucesso!', 'Sua conta foi criada. Faça o login para começar.');
+      navigation.navigate('Login');
+
+    } catch (error: any) {
+      if (error.message.includes('UNIQUE constraint failed')) {
+        Alert.alert('Erro', 'Este e-mail ou CPF já está cadastrado.');
+      } else {
+        Alert.alert('Erro ao Cadastrar', 'Não foi possível criar sua conta. Tente novamente.');
+      }
+      console.error(error);
+    }
   };
 
   return (

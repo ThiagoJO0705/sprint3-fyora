@@ -1,19 +1,32 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import AuthNavigator from './navigation/AuthNavigator';
-import MainNavigator from './navigation/TabNavigator';
-import { Colors } from './constants/Colors';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { ActivityIndicator, View } from "react-native";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import MainNavigator from "./navigation/TabNavigator";
+import AuthNavigator from "./navigation/AuthNavigator";
 
-export default function App() {
-  // 'false' para ver a tela de Login
-  // 'true' para ver a navegação principal do app
-  const userIsLoggedIn = false;
+const AppContent = () => {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>
-      <StatusBar style="dark" backgroundColor={Colors.background} />
-      {userIsLoggedIn ? <MainNavigator /> : <AuthNavigator />}
+      {user ? <MainNavigator /> : <AuthNavigator />}
     </NavigationContainer>
+  );
+};
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }

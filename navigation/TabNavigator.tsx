@@ -14,7 +14,7 @@ import CareFyoraScreen from "../screens/CareFyoraScreen";
 import CommunityScreen from "../screens/CommunityScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ReportScreen from "../screens/ReportScreen";
-import NewPostScreen from "../screens/NewPostScreen"; 
+import NewPostScreen from "../screens/NewPostScreen";
 import { TouchableOpacity } from "react-native";
 
 const Tab = createBottomTabNavigator<AppTabParamList>();
@@ -41,6 +41,16 @@ const AppTabs = () => {
       })}
     >
       <Tab.Screen
+        name="Fyora"
+        component={FyoraScreen}
+        options={{
+          title: "Fyora",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="bird" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Progresso"
         component={ProgressScreen}
         options={{
@@ -57,16 +67,6 @@ const AppTabs = () => {
           title: "Meu Oásis",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="leaf" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Fyora"
-        component={FyoraScreen}
-        options={{
-          title: "Fyora",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bird" color={color} size={size} />
           ),
         }}
       />
@@ -106,7 +106,7 @@ const MainNavigator = () => {
         name="ReportScreen"
         component={ReportScreen}
         options={({ navigation }) => ({
-          presentation: "modal", 
+          presentation: "modal",
           title: "Relatar Recaída",
           headerLeft: () => (
             <TouchableOpacity
@@ -115,21 +115,25 @@ const MainNavigator = () => {
             >
               <Ionicons name="close" size={28} color={Colors.primary} />
             </TouchableOpacity>
-                ),
+          ),
         })}
       />
-    <RootStack.Screen
+      <RootStack.Screen
         name="NewPost"
         component={NewPostScreen}
         options={({ navigation }) => ({
           presentation: "modal",
           title: "Novo Post",
           headerLeft: () => (
-            <TouchableOpacity 
-            onPress={() => navigation.goBack()} 
-            style={{ padding: 5 }}
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ padding: 5 }}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.textPrimary} />
+              <Ionicons
+                name="arrow-back"
+                size={24}
+                color={Colors.textPrimary}
+              />
             </TouchableOpacity>
           ),
         })}
