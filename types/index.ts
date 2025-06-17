@@ -1,9 +1,9 @@
-export interface ChartDataPoint {
+interface ChartDataPoint {
   label: string;
   value: number;
 }
 
-export interface Achievement {
+interface Achievement {
   id: string;
   icon: string;
   title: string;
@@ -11,7 +11,7 @@ export interface Achievement {
   achievedDate?: string;
 }
 
-export interface UserProgress {
+interface UserProgress {
   moneySaved: number;
   currentStreak: number;
   maxStreak: number;
@@ -20,9 +20,14 @@ export interface UserProgress {
   achievementsHistory: Achievement[];
 }
 
-export type CommunityTag = 'desabafo' | 'vitória' | 'gatilhos' | 'motivação' | 'dúvida';
+type CommunityTag =
+  | "desabafo"
+  | "vitória"
+  | "gatilhos"
+  | "motivação"
+  | "dúvida";
 
-export interface Post {
+interface Post {
   id: string;
   authorName: string;
   authorAvatar: any;
@@ -33,33 +38,50 @@ export interface Post {
   commentCount: number;
 }
 
-export interface User {
-  id: string;
+interface User {
+  id: number;
   name: string;
+  cpf: string;
+  phone: string;
   email: string;
+  password?: string;
   communityUsername: string;
   fyoraAvatar: any;
 }
 
-export interface OasisActivity {
+interface OasisActivity {
   id: string;
   title: string;
   description: string;
-  iconName: React.ComponentProps<typeof import('@expo/vector-icons').Ionicons>['name'];
+  iconName: React.ComponentProps<
+    typeof import("@expo/vector-icons").Ionicons
+  >["name"];
 }
 
-export interface FyoraStatus {
+interface FyoraStatus {
   level: number;
-  xp: number; 
-  xpToNextLevel: number; 
-  happiness: number; 
-  hunger: number; 
-  entertainment: number; 
-  energy: number; 
+  xp: number;
+  xpToNextLevel: number;
+  happiness: number;
+  hunger: number;
+  entertainment: number;
+  energy: number;
 }
 
-export interface PlayerResources {
-  feathers: number; 
-  streak: number;   
-  coins: number;    
+interface PlayerResources {
+  feathers: number;
+  streak: number;
+  coins: number;
 }
+
+export {
+  Achievement,
+  ChartDataPoint,
+  CommunityTag,
+  FyoraStatus,
+  OasisActivity,
+  PlayerResources,
+  Post,
+  User,
+  UserProgress,
+};
