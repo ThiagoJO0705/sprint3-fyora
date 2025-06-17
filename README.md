@@ -1,82 +1,118 @@
-# 🌱 Fyora App
+# Fyora - Sua Companheira na Jornada Contra as Apostas
 
-**Sua companheira na jornada contra o vício em apostas.**
+<p align="center">
+  <img src="assets/images/fyora-character-care.png" alt="Fyora App Mockup" width="300"/>
+</p>
 
----
+> Fyora é uma solução mobile inovadora focada no tratamento, inibição e suporte a pessoas com comportamento compulsivo em relação a apostas. Diferente de abordagens tradicionais, Fyora tem um coração: uma personagem que evolui com o usuário. A ideia é criar um vínculo emocional, um elo afetivo com a Fyora para que, ao cuidar dela, o usuário esteja, na verdade, cuidando de si mesmo.
 
-## ✨ Visão Geral
+## 📋 Índice
 
-Fyora é um aplicativo gratuito e acolhedor criado para apoiar pessoas que enfrentam desafios com o uso compulsivo de apostas. Inspirado em princípios de bem-estar emocional, autocontrole e empatia, o Fyora App oferece uma combinação única de tecnologia, gamificação simbólica e suporte psicológico leve para ajudar o usuário a recuperar sua autonomia e qualidade de vida.
+- [Sobre o Projeto](#sobre-o-projeto)
+- [✨ Principais Funcionalidades](#principais-funcionalidades)
+- [🚀 Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [🎨 Design e Prototipagem (Figma)](#design-e-prototipagem-figma)
+- [▶️ Começando](#começando)
+- [📂 Estrutura do Projeto](#estrutura-do-projeto)
+- [👨‍💻 Integrantes](#integrantes)
 
----
+## 💡 Sobre o Projeto
 
-## 🎯 Objetivos da Solução
+O crescimento acelerado do mercado de apostas trouxe graves consequências sociais e psicológicas. Apostadores compulsivos enfrentam impactos financeiros, problemas de saúde mental e prejuízos nas relações interpessoais. É urgente oferecer uma solução eficaz, humana e acessível para combater essa crise silenciosa.
 
-- **Detecção de Risco:** ajudar o usuário a reconhecer padrões de comportamento compulsivo.
-- **Inibição Inteligente:** oferecer intervenções e alertas para quebrar ciclos impulsivos de aposta.
-- **Tratamento e Suporte:** promover o bem-estar através de ferramentas educativas, emocionais e financeiras.
-- **Conexão Emocional:** usar uma mascote interativa — a Fyora — como espelho do progresso e motivação do usuário.
-- **Gratuidade e Acessibilidade:** garantir que todas as funcionalidades principais estejam disponíveis de forma gratuita e ética.
+Fyora nasceu com o objetivo de ser essa solução, utilizando tecnologia e empatia para oferecer suporte contínuo através de três pilares:
 
----
+-   **Inibição Ativa:** Intervenções em tempo real com alertas e alternativas saudáveis.
+-   **Tratamento e Apoio:** Conexão com profissionais, grupos de apoio e conteúdos educativos.
+-   **Laço Emocional:** A Fyora como centro emocional do app, motivando e refletindo o progresso do usuário.
 
-## 🦉 Quem é a Fyora?
+## ✨ Principais Funcionalidades
 
-Fyora é uma criatura simbólica, misteriosa e afetuosa, que evolui conforme o comportamento positivo do usuário. Quando o usuário evita apostas, a Fyora floresce. Em recaídas, ela demonstra fragilidade. Essa relação simbólica transforma a jornada de recuperação em uma experiência emocionalmente significativa.
+-   **Dashboard Emocional (Tela Fyora):** A tela principal que reflete o estado do usuário através da felicidade e progresso da Fyora.
+-   **Acompanhamento de Progresso:** Métricas visuais e motivadoras, como dinheiro economizado, sequência de dias sem apostas e conquistas desbloqueadas.
+-   **Oásis de Bem-Estar:** Uma caixa de ferramentas com atividades de relaxamento, como exercícios de respiração, meditações guiadas e um "antídoto para o tédio".
+-   **Comunidade Anônima e Segura:** Um feed de apoio onde usuários podem compartilhar vitórias e desabafos de forma anônima, com nomes e avatares gerados pelo sistema.
+-   **Ferramenta de Auto-Relato:** Uma interface guiada e sem julgamentos para que o usuário possa registrar recaídas, ajudando-o a identificar gatilhos e a tomar uma ação de recuperação imediata.
+-   **Gerenciamento de Perfil e Segurança:** Área privada para o usuário gerenciar sua conta e acessar contatos de ajuda em um "Porto Seguro".
+-   **Sistema de Recompensas:** Gamificação através de moedas e itens para personalizar a Fyora, criando um ciclo de engajamento positivo.
 
----
+## 🚀 Tecnologias Utilizadas
 
-## 🧩 Funcionalidades Principais
+Este projeto foi construído utilizando as seguintes tecnologias de ponta no ecossistema mobile:
 
-### 📊 Radar de Hábitos
-- Registro manual (ou automático no futuro) de tempo e dinheiro gastos com apostas.
-- Gráficos simples para visualização do histórico pessoal.
+-   [React Native](https://reactnative.dev/)
+-   [Expo](https://expo.dev/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [React Navigation](https://reactnavigation.org/) para o gerenciamento de rotas e navegação.
+-   [Expo-SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/) para o banco de dados local.
+-   [React Native Progress](https://github.com/oblador/react-native-progress) para os indicadores de progresso circulares.
 
-### ⏳ Metas de Autocontrole
-- Definição de limites diários de tempo ou gasto.
-- Feedback visual sobre o cumprimento dessas metas.
+## 🎨 Design e Prototipagem (Figma)
 
-### 📓 Diário de Emoções e Conquistas
-- Registro de gatilhos, sentimentos e vitórias pessoais.
-- Autoavaliações periódicas.
+Todo o design das telas, componentes e da identidade visual do Fyora foi cuidadosamente planejado e prototipado na plataforma Figma. Você pode visualizar o projeto completo no link abaixo.
 
-### 🌿 Meu Oásis de Bem-Estar
-- Meditações guiadas e técnicas de respiração.
-- Sugestões de atividades alternativas e saudáveis.
+**[➡️ Acessar o Projeto no Figma](https://www.figma.com/design/2v3JN6z8rvv37GhoBjCklf/Fyora?node-id=0-1&t=vQSbaVGpyxurjxeu-1)**
 
-### 🔔 Alertas e Notificações
-- Lembretes motivacionais da Fyora.
-- Alertas ao abrir apps de apostas (em versões futuras).
+## ▶️ Começando
 
-### 🧠 Conteúdo Educativo
-- Dicas e explicações sobre distorções cognitivas nas apostas.
-- Educação financeira básica e consciente.
+Para rodar este projeto localmente, siga os passos abaixo.
 
-### 🧵 Chatbot Terapêutico (futuro)
-- Interação anônima com a Fyora (LLM).
-- Suporte emocional leve e humanizado.
+### Pré-requisitos
 
-### 🛍️ Gamificação e Recompensas
-- Moedas virtuais por metas atingidas.
-- Loja de itens cosméticos e upgrades para a Fyora.
+Você vai precisar ter o Node.js, npm (ou yarn) e o Expo Go (no seu celular) instalados.
 
-### 🛟 Meu Porto Seguro
-- Acesso rápido a contatos de emergência.
-- Botão de ajuda urgente.
-- Indicação de redes de apoio e profissionais.
+-   [Node.js](https://nodejs.org/en/)
+-   [Expo Go (Android/iOS)](https://expo.dev/go)
 
----
+### Instalação
 
-## 📌 Status do Projeto
+1.  Clone o repositório para a sua máquina local:
+    ```sh
+    git clone https://github.com/FIAP-MOBILE/challenge-fyora
+    ```
+2.  Navegue até o diretório do projeto:
+    ```sh
+    cd challenge-fyora
+    ```
+3.  Instale todas as dependências do projeto:
+    ```sh
+    npm install
+    ```
+    ou, se você usa yarn:
+    ```sh
+    yarn
+    ```
+4.  Para garantir que o banco de dados seja criado corretamente, desinstale o app `Fyora` do seu emulador/dispositivo se já houver uma versão antiga.
 
-> Estamos atualmente desenvolvendo um **MVP funcional**, com foco nas principais interações de autocontrole, conexão emocional e registro de hábitos. Este repositório representa as bases do projeto Fyora e será evoluído com feedbacks contínuos, testes e validações reais.
+### Executando o Aplicativo
 
----
+1.  Inicie o servidor de desenvolvimento do Expo. É altamente recomendado usar a flag `--clear` na primeira vez para evitar problemas de cache.
+    ```sh
+    npx expo start --clear
+    ```
+2.  Um QR code aparecerá no seu terminal. Abra o aplicativo **Expo Go** no seu celular e escaneie o QR code para abrir o projeto.
 
-## 💙 Licença e Responsabilidade
+## 📂 Estrutura do Projeto
 
-Fyora é um projeto experimental com fins acadêmicos e sociais. Ele **não substitui apoio psicológico profissional**, mas busca atuar como ferramenta complementar de apoio, educação e prevenção.
+A estrutura de pastas do projeto foi organizada da seguinte forma para manter a escalabilidade e a clareza: <br>
+fyora-app/ <br>
+├── assets/ # Fontes, imagens e outros arquivos estáticos <br>
+├── components/ # Componentes React reutilizáveis (Botões, Cards, etc.) <br>
+├── constants/ # Constantes globais (Cores, etc.) <br>
+├── context/ # React Context para gerenciamento de estado global (AuthContext) <br>
+├── navigation/ # Lógica de navegação e definição de rotas <br>
+├── screens/ # As telas principais do aplicativo <br>
+├── services/ # Serviços externos (database.ts) <br>
+├── types/ # Definições de tipos e interfaces do TypeScript <br>
+└── App.tsx # O ponto de entrada principal do aplicativo
 
----
+## 👨‍💻 Integranets
 
-> *Cuidar da Fyora é, na verdade, cuidar de si mesmo.*
+GUILHERME ROCHA BIANCHINI - RM97974 <br>
+NIKOLAS RODRIGUES MOURA DOS SANTOS - RM551566 <br>
+PEDRO HENRIQUE PEDROSA TAVARES - RM97877 <br>
+RODRIGO BRASILEIRO - RM98952 <br>
+THIAGO JARDIM DE OLIVEIRA - RM551624
+
+
+Projeto desenvolvido pela equipe TechPulse Global Network para o Challenge de Mobile Development da FIAP.
