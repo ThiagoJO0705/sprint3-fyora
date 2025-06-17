@@ -108,7 +108,7 @@ interface PostCreationData {
 export const addPost = async (postData: PostCreationData): Promise<void> => {
   try {
     const timestamp = new Date().toISOString();
-    const tagsAsJson = JSON.stringify(postData.tags); // Converte o array de tags para string
+    const tagsAsJson = JSON.stringify(postData.tags);
 
     await db.runAsync(
       'INSERT INTO posts (content, tags, timestamp, authorId) VALUES (?, ?, ?, ?);',
