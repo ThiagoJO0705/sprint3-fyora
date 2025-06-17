@@ -123,3 +123,37 @@ export const addPost = async (postData: PostCreationData): Promise<void> => {
     throw error;
   }
 };
+
+export const getPosts = async (): Promise<Post[]> => {
+  try {
+    const allRows = await db.getAllAsync<any>(`
+      SELECT 
+        p.id, p.content, p.tags, p.timestamp, p.authorId,
+        u.name as authorName,
+        u.email as authorEmail -- Usado para simular o avatar
+      FROM posts p
+      JOIN users u ON p.authorId = u.id
+      ORDER BY p.timestamp DESC; -- Ordena os posts do mais novo para o mais antigo
+    `);
+
+    if (allRows && allRows.length > 0) {
+      const posts: Post[] = allRows.map(row => ({
+        id: row.id,
+        content: row.content,
+        tags: JSON.parse(row.tags),
+        timestamp: row.timestamp,
+        authorId: row.authorId,
+        authorName: row.authorName,
+        authorAvatar: require('../assets/images/phoenix-avatar-1.png'),
+        supportCount: 0,
+        commentCount: 0,
+      }));
+      return posts;
+    }
+    
+    return [];
+  } catch (error) {
+    console.error('Erro ao buscar posts:', error);
+    throw error;
+  }
+};
