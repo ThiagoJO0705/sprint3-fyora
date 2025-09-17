@@ -9,13 +9,14 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AppTabScreenNavigationProp } from '../navigation/types';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
 import { Colors } from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import AppButton from "../components/AppButton";
 import * as Progress from "react-native-progress";
 
-type FyoraScreenNavigationProp = AppTabScreenNavigationProp;
+type FyoraScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const FyoraScreen = () => {
   const navigation = useNavigation<FyoraScreenNavigationProp>();
