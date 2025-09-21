@@ -1,7 +1,7 @@
 # Fyora - Sua Companheira na Jornada Contra as Apostas
 
 <p align="center">
-  <img src="assets/images/fyora-character-care.png" alt="Fyora App Mockup" width="300"/>
+  <img src="src/assets/images/fyora-character-care.png" alt="Fyora App Mockup" width="300"/>
 </p>
 
 > Fyora é uma solução mobile inovadora focada no tratamento, inibição e suporte a pessoas com comportamento compulsivo em relação a apostas. Diferente de abordagens tradicionais, Fyora tem um coração: uma personagem que evolui com o usuário. A ideia é criar um vínculo emocional, um elo afetivo com a Fyora para que, ao cuidar dela, o usuário esteja, na verdade, cuidando de si mesmo.
