@@ -17,7 +17,7 @@ import AppTextInput from "../components/AppTextInput";
 import AppButton from "../components/AppButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../navigation/types";
-import { findUserByEmailAndPassword } from "../services/database";
+import { findUserByEmailAndPassword } from "../utils/AsyncStorageUtils"; // Importar do AsyncStorageUtils
 import { useAuth } from "../context/AuthContext";
 
 type Props = NativeStackScreenProps<AuthStackParamList, "Login">;
@@ -40,7 +40,7 @@ const LoginScreen = ({ navigation }: Props) => {
       const foundUser = await findUserByEmailAndPassword(email, password);
 
       if (foundUser) {
-        login(foundUser);
+        await login(foundUser); // Usar a função login do AuthContext
       } else {
         Alert.alert("Login Falhou", "E-mail ou senha incorretos.");
       }
@@ -153,8 +153,9 @@ const styles = StyleSheet.create({
     height: 280,
     resizeMode: "contain",
     position: "relative",
-    top: 40,
+    top: 45,
     left: 20,
+    zIndex: 10
   },
   title: {
     fontSize: 40,
