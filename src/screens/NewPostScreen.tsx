@@ -1,206 +1,194 @@
 import React, { useState } from "react";
 import {
   View,
+  TextInput,
+  TouchableOpacity,
   Text,
   StyleSheet,
-  SafeAreaView,
-  TextInput,
-  Alert,
   Image,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  ActivityIndicator,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/types";
-import { CommunityTag } from "../types";
-import { Colors } from "../constants/Colors";
-import AppButton from "../components/AppButton";
-import TagSelector from "../components/TagSelector";
+import { addPost } from "../utils/AsyncStorageUtils";
 import { useAuth } from "../context/AuthContext";
-import { addPost } from "../services/database";
+import { Colors } from "../constants/Colors";
 
-const AVAILABLE_TAGS: CommunityTag[] = [
-  "desabafo",
-  "vitória",
-  "gatilhos",
-  "motivação",
-  "dúvida",
-];
-const MAX_CHARACTERS = 1000;
-
-type NewPostNavigationProp = NativeStackNavigationProp<RootStackParamList>;
-
-const NewPostScreen = () => {
-  const navigation = useNavigation<NewPostNavigationProp>();
-  const { user } = useAuth();
-  const [content, setContent] = useState("");
-  const [selectedTags, setSelectedTags] = useState<CommunityTag[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleToggleTag = (tag: CommunityTag) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
-
-  const handleSubmit = async () => {
-    if (!user) {
-      Alert.alert("Erro", "Você precisa estar logado para criar um post.");
-      return;
-    }
-    if (content.trim().length === 0) {
-      Alert.alert(
-        "Post Vazio",
-        "Por favor, escreva algo antes de compartilhar."
-      );
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const newPostData = {
-        content: content.trim(),
-        tags: selectedTags,
-        authorId: user.id,
-      };
-
-      await addPost(newPostData);
-
-      Alert.alert(
-        "Post realizado com sucesso",
-        "Obrigado por contribuir com nossa comunidade!",
-        [{ text: "OK", onPress: () => navigation.goBack() }]
-      );
-    } catch (error) {
-      console.error(error);
-      Alert.alert(
-        "Erro",
-        "Não foi possível compartilhar seu post. Tente novamente."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (!user) {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <Text>Erro: Usuário não encontrado.</Text>
-      </SafeAreaView>
-    );
-  }
-
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
-      >
-        <ScrollView contentContainerStyle={styles.container}>
-          <View style={styles.card}>
-            <View style={styles.cardHeader}>
-              <Image source={user.fyoraAvatar} style={styles.avatar} />
-              <Text style={styles.author}>{user.communityUsername}</Text>
-            </View>
-
-            <TextInput
-              style={styles.textArea}
-              placeholder="Escreva o que vem à mente..."
-              placeholderTextColor={Colors.placeholder}
-              multiline
-              value={content}
-              onChangeText={setContent}
-              maxLength={MAX_CHARACTERS}
-              editable={!isSubmitting}
-            />
-            <Text style={styles.charCounter}>
-              {content.length}/{MAX_CHARACTERS}
-            </Text>
-
-            <TagSelector
-              label="Tags"
-              tags={AVAILABLE_TAGS}
-              selectedTags={selectedTags}
-              onToggleTag={handleToggleTag}
-            />
-
-            <View style={{ marginTop: 24 }}>
-              <AppButton
-                title={isSubmitting ? "" : "Compartilhar"}
-                onPress={handleSubmit}
-                disabled={isSubmitting}
-              />
-              {isSubmitting && (
-                <ActivityIndicator
-                  style={styles.loadingIndicator}
-                  color={Colors.white}
-                />
-              )}
-            </View>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
-  );
+const avatarMap: Record<string, any> = {
+  "phoenix-avatar-1": require("../assets/images/phoenix-avatar-1.png"),
+  "phoenix-avatar-2": require("../assets/images/phoenix-avatar-2.png"),
+  "phoenix-avatar-3": require("../assets/images/phoenix-avatar-3.png"),
 };
 
+const availableTags = ["desabafo", "vitória", "gatilhos", "motivação", "dúvida"];
+
+export default function NewPostScreen({ navigation }: any) {
+  const { user } = useAuth();
+  const [content, setContent] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const toggleTag = (tag: string) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
+const handlePublish = async () => {
+  if (!content.trim() || !user) return;
+
+  await addPost({
+    content,
+    tags: selectedTags,
+    authorId: user.id,
+    authorName: user.communityUsername,
+    authorAvatar: user.fyoraAvatar,
+  });
+
+  setContent("");
+  setSelectedTags([]);
+  navigation.goBack();
+};
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <View style={styles.header}>
+          <Image
+            source={
+              user?.fyoraAvatar && avatarMap[user.fyoraAvatar]
+                ? avatarMap[user.fyoraAvatar]
+                : avatarMap["phoenix-avatar-3"]
+            }
+            style={styles.avatar}
+          />
+          <Text style={styles.username}>{user?.communityUsername}</Text>
+        </View>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Escreva o que vem à mente..."
+          placeholderTextColor={Colors.placeholder}
+          value={content}
+          onChangeText={setContent}
+          multiline
+          maxLength={1000}
+        />
+        <Text style={styles.charCount}>{content.length}/1000</Text>
+
+        <Text style={styles.label}>Tags</Text>
+        <View style={styles.tagsContainer}>
+          {availableTags.map((tag) => (
+            <TouchableOpacity
+              key={tag}
+              style={[
+                styles.tag,
+                selectedTags.includes(tag) && styles.tagSelected,
+              ]}
+              onPress={() => toggleTag(tag)}
+            >
+              <Text
+                style={[
+                  styles.tagText,
+                  selectedTags.includes(tag) && styles.tagTextSelected,
+                ]}
+              >
+                {tag}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handlePublish}>
+          <Text style={styles.buttonText}>Compartilhar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: Colors.background,
-  },
-  container: {
+    alignItems: "center",
+    justifyContent: "center",
     padding: 16,
-    flexGrow: 1,
   },
   card: {
+    width: "100%",
     backgroundColor: Colors.card,
-    borderRadius: 20,
-    padding: 20,
+    borderRadius: 16,
+    padding: 16,
   },
-  cardHeader: {
+  header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 12,
   },
   avatar: {
     width: 40,
     height: 40,
     borderRadius: 20,
+    marginRight: 10,
   },
-  author: {
-    fontSize: 16,
+  username: {
     fontWeight: "bold",
-    color: Colors.textPrimary,
-    marginLeft: 12,
-  },
-  textArea: {
-    backgroundColor: Colors.white,
-    height: 150,
-    padding: 16,
-    borderRadius: 12,
     fontSize: 16,
-    textAlignVertical: "top",
-    borderWidth: 1,
-    borderColor: "#EFEFEF",
     color: Colors.textPrimary,
   },
-  charCounter: {
+  input: {
+    backgroundColor: Colors.white,
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 14,
+    color: Colors.textPrimary,
+    textAlignVertical: "top",
+    minHeight: 100,
+  },
+  charCount: {
+    alignSelf: "flex-end",
     fontSize: 12,
     color: Colors.textSecondary,
-    textAlign: "right",
     marginTop: 4,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginTop: 16,
+    marginBottom: 8,
+    color: Colors.textPrimary,
+  },
+  tagsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
     marginBottom: 16,
   },
-  loadingIndicator: {
-    position: "absolute",
-    alignSelf: "center",
-    top: 0,
-    bottom: 0,
+  tag: {
+    borderWidth: 1,
+    borderColor: Colors.primary,
+    borderRadius: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    margin: 4,
+  },
+  tagSelected: {
+    backgroundColor: Colors.primary,
+  },
+  tagText: {
+    fontSize: 13,
+    color: Colors.primary,
+  },
+  tagTextSelected: {
+    color: Colors.white,
+  },
+  button: {
+    backgroundColor: Colors.primary,
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: Colors.white,
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
-
-export default NewPostScreen;

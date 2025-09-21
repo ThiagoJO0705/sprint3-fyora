@@ -1,117 +1,147 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useState } from "react";
 import {
-  StyleSheet,
-  SafeAreaView,
   View,
-  FlatList,
   Text,
-  ActivityIndicator,
-} from 'react-native';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/types';
-import { Colors } from '../constants/Colors';
-import { Post } from '../types';
-import { getPosts } from '../services/database';
-import PostCard from '../components/PostCard';
-import FloatingActionButton from '../components/FloatingActionButton';
-import CommunityRulesBanner from '../components/CommunityRulesBanner';
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { getPosts, Post } from "../utils/AsyncStorageUtils";
+import { Colors } from "../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
-type CommunityScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
-const CommunityScreen = () => {
-  const navigation = useNavigation<CommunityScreenNavigationProp>();
+const avatarMap: Record<string, any> = {
+  "phoenix-avatar-1": require("../assets/images/phoenix-avatar-1.png"),
+  "phoenix-avatar-2": require("../assets/images/phoenix-avatar-2.png"),
+  "phoenix-avatar-3": require("../assets/images/phoenix-avatar-3.png"),
+};
+
+export default function CommunityScreen({ navigation }: any) {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  const loadPosts = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      const fetchedPosts = await getPosts();
-      setPosts(fetchedPosts);
-    } catch (err) {
-      setError('Não foi possível carregar os posts da comunidade.');
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
+  useEffect(() => {
+    const loadPosts = async () => {
+      const savedPosts = await getPosts();
+      setPosts(savedPosts);
+    };
+
+    const interval = setInterval(loadPosts, 1500);
+    loadPosts();
+    return () => clearInterval(interval);
   }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      console.log('Tela de Comunidade focada. Carregando posts...');
-      loadPosts();
-    }, [loadPosts])
-  );
+  const renderItem = ({ item }: { item: Post }) => {
+    const avatarKey =
+      item.authorId === "fyora-app-id" ? "phoenix-avatar-1" : item.authorAvatar;
 
-  const handleNewPost = () => {
-    navigation.navigate('NewPost');
-  };
-
-  const renderContent = () => {
-    if (isLoading) {
-      return <ActivityIndicator size="large" color={Colors.primary} style={{ marginTop: 50 }} />;
-    }
-    if (error) {
-      return <Text style={styles.infoText}>{error}</Text>;
-    }
-    if (posts.length === 0) {
-      return <Text style={styles.infoText}>Ainda não há posts. Seja o primeiro a compartilhar!</Text>;
-    }
     return (
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => <PostCard post={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        ListHeaderComponent={<CommunityRulesBanner />}
-        contentContainerStyle={styles.listContentContainer}
-        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={styles.post}>
+        <View style={styles.header}>
+          <Image
+            source={
+              avatarKey && avatarMap[avatarKey]
+                ? avatarMap[avatarKey]
+                : avatarMap["phoenix-avatar-1"]
+            }
+            style={styles.avatar}
+          />
+          <Text style={styles.author}>{item.authorName}</Text>
+        </View>
+
+        <Text style={styles.content}>{item.content}</Text>
+
+        <View style={styles.footer}>
+          <Text style={styles.meta}>
+            ❤️ {item.supportCount}   💬 {item.commentCount}
+          </Text>
+        </View>
+      </View>
     );
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.subtitle}>
-          Um espaço seguro para compartilhar e apoiar
-        </Text>
-        {renderContent()}
-        <FloatingActionButton onPress={handleNewPost} />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <FlatList
+        data={posts}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.listContent}
+      />
+
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => navigation.navigate("NewPost")}
+      >
+        <Ionicons name="add" size={32} color={Colors.white} />
+      </TouchableOpacity>
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: Colors.background,
-    paddingTop: 10,
-  },
   container: {
     flex: 1,
+    backgroundColor: Colors.background,
+  },
+  listContent: {
+    padding: 12,
+  },
+  post: {
+    backgroundColor: Colors.card,
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  header: {
+    flexDirection: "row",
     alignItems: "center",
+    marginBottom: 8,
   },
-  listContentContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: 80, 
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 10,
   },
-  subtitle: {
+  author: {
+    fontWeight: "bold",
+    fontSize: 16,
     color: Colors.textPrimary,
-    paddingBottom: 20,
-    fontSize: 16,
   },
-  infoText: {
-    marginTop: 50,
-    fontSize: 16,
+  content: {
+    fontSize: 15,
+    marginBottom: 8,
+    color: Colors.textPrimary,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  meta: {
+    fontSize: 12,
     color: Colors.textSecondary,
-    textAlign: 'center',
-    paddingHorizontal: 20,
-  }
+  },
+  fab: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: Colors.primary,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+  },
 });
-
-export default CommunityScreen;
