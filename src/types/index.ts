@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ChartDataPoint {
   label: string;
   value: number;
@@ -28,8 +30,8 @@ type CommunityTag =
   | "dúvida";
 
 interface Post {
-  id: number;
-  authorId: number;
+  id: string; 
+  authorId: string; 
   authorName: string;
   authorAvatar: any;
   content: string;
@@ -40,7 +42,7 @@ interface Post {
 }
 
 interface User {
-  id: number;
+  id: string; 
   name: string;
   cpf: string;
   phone: string;

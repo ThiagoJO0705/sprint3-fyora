@@ -13,13 +13,20 @@ import { Colors } from "../constants/Colors";
 import AppButton from "../components/AppButton";
 import ProfileOption from "../components/ProfileOption";
 
+
+const avatarMap: Record<string, any> = {
+  "phoenix-avatar-1": require("../assets/images/phoenix-avatar-1.png"),
+  "phoenix-avatar-2": require("../assets/images/phoenix-avatar-2.png"),
+  "phoenix-avatar-3": require("../assets/images/phoenix-avatar-3.png"),
+};
+
 const ProfileScreen = () => {
   const { user, logout } = useAuth();
 
   const handleLogout = () => {
     Alert.alert("Sair da Conta", "Você tem certeza que deseja sair?", [
       { text: "Cancelar", style: "cancel" },
-      { text: "Sair", style: "destructive", onPress: logout }, 
+      { text: "Sair", style: "destructive", onPress: logout },
     ]);
   };
 
@@ -35,7 +42,14 @@ const ProfileScreen = () => {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.welcomeCard}>
-          <Image source={user.fyoraAvatar} style={styles.avatar} />
+          <Image
+            source={
+              user?.fyoraAvatar && avatarMap[user.fyoraAvatar]
+                ? avatarMap[user.fyoraAvatar]
+                : avatarMap["phoenix-avatar-3"]
+            }
+            style={styles.avatar}
+          />
           <View>
             <Text style={styles.welcomeText}>Olá, {user.name}!</Text>
             <Text style={styles.communityName}>
@@ -143,6 +157,8 @@ const styles = StyleSheet.create({
   rewardsContainer: {
     gap: 10,
     marginBottom: 24,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   safeHavenCard: {
     backgroundColor: "#FFEADD",
