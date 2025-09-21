@@ -99,17 +99,19 @@ A estrutura de pastas do projeto foi organizada da seguinte forma para manter a 
 
 
 A estrutura de pastas do projeto foi organizada da seguinte forma para manter a escalabilidade e a clareza: <br>
-fyora-app/ <br>
-├── assets/ # Fontes, imagens e outros arquivos estáticos <br>
-├── components/ # Componentes React reutilizáveis (Botões, Cards, etc.) <br>
-├── constants/ # Constantes globais (Cores, etc.) <br>
-├── context/ # React Context para gerenciamento de estado global (AuthContext) <br>
-├── navigation/ # Lógica de navegação e definição de rotas <br>
-├── screens/ # As telas principais do aplicativo <br>
-├── services/ # Serviços externos (database.ts) <br>
-├── types/ # Definições de tipos e interfaces do TypeScript <br>
-└── App.tsx # O ponto de entrada principal do aplicativo
-
+```bash
+fyora-app/ 
+├── src/
+    ├── assets/       # Fontes, imagens e outros arquivos estáticos
+    ├── components/   # Componentes React reutilizáveis (Botões, Cards, etc.)
+    ├── constants/    # Constantes globais (Cores, etc.)
+    ├── context/      # React Context para gerenciamento de estado global (AuthContext)
+    ├── navigation/   # Lógica de navegação e definição de rotas
+    ├── screens/      # As telas principais do aplicativo
+    ├── services/     # Serviços externos (database.ts)
+    ├── types/        # Definições de tipos e interfaces do TypeScript
+    └── App.tsx       # O ponto de entrada principal do aplicativo
+```
 
 ## Integrantes
 
